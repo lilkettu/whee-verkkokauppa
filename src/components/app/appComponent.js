@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HelloWorld from './js/containers/HelloWorld';
+import HelloWorld from '../hello/helloContainer';
 
 class App extends Component {
   render() {
