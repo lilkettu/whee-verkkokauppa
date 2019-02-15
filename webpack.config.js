@@ -9,8 +9,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
-        loader: "babel-loader",
-        options: { presets: ["@babel/env"] }
+        loader: "babel-loader"
       }
     ]
   },
@@ -24,5 +23,6 @@ module.exports = {
     contentBase: path.join(__dirname, "public/"),
     port: 3000,
     publicPath: "http://localhost:3000/dist/"
-  }
+  },
+  devtool: 'inline-source-map'
 };
