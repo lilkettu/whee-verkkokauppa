@@ -1,5 +1,5 @@
 import React from "react";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 
 const Hello = ({ text, changeText }) => {
   return (
@@ -11,8 +11,8 @@ const Hello = ({ text, changeText }) => {
 }
 
 Hello.propTypes = {
-  text: propTypes.string.isRequired,
-  changeText: propTypes.func.isRequired
+  text: PropTypes.string.isRequired,
+  changeText: PropTypes.func.isRequired
 };
 
 export default Hello;
