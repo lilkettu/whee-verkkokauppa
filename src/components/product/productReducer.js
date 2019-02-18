@@ -15,7 +15,7 @@ const initialState = {
         {
             id: 3,
             name: "Triangle",
-            description: "A true classic with three elegan corners.",
+            description: "A true classic with three elegant corners.",
             price: 1009
         }
     ]
@@ -26,4 +26,4 @@ const productReducer = (state = initialState) => {
     return state;
 }
 
-export default productReducer;
+export default productReducer
