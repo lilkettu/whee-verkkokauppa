@@ -3,13 +3,16 @@ import PropTypes from "prop-types"
 import Product from "./productComponent"
 import styled from 'styled-components'
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, addItem }) => {
     return (
-        <List>
-            {products.map(product => (
+        <div>
+            <List>
+                {products.map(product => (
                     <Product key={product.id} {...product} />
-            ))}
-        </List>
+                ))}
+            </List>
+            <button onClick={() => addItem()}>add</button>
+        </div>
     )
 }
 
@@ -19,7 +22,7 @@ const List = styled.ul`
 `
 
 ProductList.propTypes = {
-    products: PropTypes.array
+    products: PropTypes.array.isRequired
 }
 
 export default ProductList;

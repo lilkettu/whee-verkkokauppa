@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import Cart from './cartComponent'
 
 const mapStatetoProps = state => ({
-    addedProducts: state.cart.addedProducts
+    itemsInCart: state.cart.itemsInCart
 })
 
 const CartContainer = connect(mapStatetoProps)(Cart)

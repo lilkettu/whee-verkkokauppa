@@ -11,6 +11,7 @@ class App extends Component {
           <Title>whee</Title>
           <Cart />
         </Header>
+        
         <Page>
           <Products />
         </Page>

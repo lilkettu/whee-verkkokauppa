@@ -2,10 +2,10 @@ import React from "react"
 import PropTypes from "prop-types"
 import styled from 'styled-components'
 
-const Cart = ({ addedProducts }) => {
+const Cart = ({ itemsInCart }) => {
     return (
         <Section>
-            <p>{addedProducts} items in cart</p>
+            <p>{itemsInCart} items in cart</p>
         </Section>
     )
 }
@@ -18,7 +18,7 @@ const Section = styled.div`
 `
 
 Cart.propTypes = {
-    addedProducts: PropTypes.number.isRequired
+    itemsInCart: PropTypes.number.isRequired
 }
 
 export default Cart;
