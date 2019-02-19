@@ -5,20 +5,20 @@ import styled from 'styled-components'
 const Cart = ({ itemsInCart }) => {
     return (
         <Section>
-            <p>{itemsInCart} items in cart</p>
+            <p>{itemsInCart.length} items in cart</p>
         </Section>
     )
 }
 
 const Section = styled.div`
-    display: inline
-    padding: 50px 50px 0px 0px
-    float: right
+    display: inline;
+    padding: 50px 50px;
+    float: right;
     font-family: 'Playfair Display', serif;
 `
 
 Cart.propTypes = {
-    itemsInCart: PropTypes.number.isRequired
+    itemsInCart: PropTypes.array.isRequired
 }
 
 export default Cart;

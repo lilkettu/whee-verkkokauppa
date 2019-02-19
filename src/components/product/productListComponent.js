@@ -5,24 +5,24 @@ import styled from 'styled-components'
 
 const ProductList = ({ products, addItem }) => {
     return (
-        <div>
-            <List>
-                {products.map(product => (
-                    <Product key={product.id} {...product} />
-                ))}
-            </List>
-            <button onClick={() => addItem()}>add</button>
-        </div>
+        <List>
+            {products.map(product => (
+                <li>
+                    <Product key={product.id} {...product} addItem={addItem} />
+                </li>
+            ))}
+        </List>
     )
 }
 
 const List = styled.ul`
-    padding: 20px
-    list-style-type: none
+    padding: 20px;
+    list-style-type: none;
 `
 
 ProductList.propTypes = {
-    products: PropTypes.array.isRequired
+    products: PropTypes.array.isRequired,
+    addItem: PropTypes.func.isRequired
 }
 
 export default ProductList;
