@@ -1,24 +1,32 @@
-import React, { Component } from "react"
+import React from "react"
 import Products from '../product/productContainer'
 import Cart from '../cart/cartContainer'
-import styled from 'styled-components'
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+import theme from '../../theme'
 
-class App extends Component {
-  render() {
-    return (
-      <div>
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Playfair Display', serif;
+    color: ${props => props.theme.black}
+  }
+`
+
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <React.Fragment>
+        <GlobalStyle />
         <Header>
           <Title>whee</Title>
           <Cart />
         </Header>
-        
+
         <Page>
           <Products />
         </Page>
-
-      </div>
-    )
-  }
+      </React.Fragment>
+    </ThemeProvider>
+  )
 }
 
 const Header = styled.div`
@@ -34,7 +42,6 @@ const Title = styled.h1`
 
 const Page = styled.div`
   padding: 150px 10%
-  font-family: 'Playfair Display', serif
 `
 
 export default App
