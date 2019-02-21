@@ -1,8 +1,8 @@
 import React from "react"
-import Products from '../product/productContainer'
-import Cart from '../cart/cartContainer'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import theme from '../../theme'
+import Products from '../product/productContainer'
+import Cart from '../cart/cartContainer'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -18,30 +18,28 @@ const App = () => {
         <GlobalStyle />
         <Header>
           <Title>whee</Title>
-          <Cart />
+          <a>Cart</a>
         </Header>
 
-        <Page>
+        <div>
           <Products />
-        </Page>
+          <Cart />
+        </div>
       </React.Fragment>
     </ThemeProvider>
   )
 }
 
 const Header = styled.div`
-      display: inline
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 `
 
 const Title = styled.h1`
-      padding: 0px 20px
-      font-size: 3em
-      float: left
-      font-family: 'Pacifico', cursive
-`
-
-const Page = styled.div`
-  padding: 150px 10%
+  padding: 0em 1em;
+  font-size: 3em;
+  font-family: 'Pacifico', cursive;
 `
 
 export default App

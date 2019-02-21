@@ -1,10 +1,16 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import CartHeader from './cartHeaderComponent'
 import Cart from './cartComponent'
+import { removeItem } from './cartReducer'
 
 const mapStatetoProps = state => ({
-    itemsInCart: state.cart.itemsInCart
+    itemsInCart: state.cart.itemsInCart,
+    total: state.cart.total
 })
 
-const CartContainer = connect(mapStatetoProps)(Cart)
+const mapDispatchToProps = dispatch => bindActionCreators({removeItem}, dispatch);
+
+const CartContainer = connect(mapStatetoProps, mapDispatchToProps)(Cart)
 
 export default CartContainer

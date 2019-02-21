@@ -9,26 +9,22 @@ const Product = ({ id, name, description, price, addItem }) => {
                 <Name>{name}</Name>
                 <p>{description}</p>
             </div>
-            <RightPanel>
+            <div>
                 <Price>{price} €</Price>
                 <AddButton
-                    onClick={() => addItem(id)}>
+                    onClick={() => addItem(id, price)}>
                     Add to cart
                 </AddButton>
-            </RightPanel>
+            </div>
         </ProductContainer>
     )
 }
 
 const ProductContainer = styled.article`
-    padding: 0.625em 3.75em;
+    padding: 2rem 25%;
     font-size: 1rem;
     display: flex;
-    justify-content: space-around;
-    align-items: baseline;
-`
-const RightPanel = styled.div`
-    
+    justify-content: space-between;
 `
 
 const Name = styled.h2`
@@ -39,6 +35,8 @@ const Name = styled.h2`
 
 const Price = styled.p`
     font-size: xx-large;
+    display: flex;
+    justify-content: flex-end;
 `
 
 const AddButton = styled.button`
@@ -46,7 +44,7 @@ const AddButton = styled.button`
     text-transform: uppercase;
     font-size: large;
     font-weight: bold;
-    padding: 8px 20px;
+    padding: 0.5em 1.25em;
     border: 1px solid;
     font-family: 'Playfair Display', serif;
 
