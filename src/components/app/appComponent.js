@@ -4,6 +4,7 @@ import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import theme from '../../theme'
 import Products from '../product/productContainer'
 import Cart from '../cart/cartContainer'
+import CartIcon from '../../svgsrc/shopping-cart.svg'
 
 const GlobalStyle = createGlobalStyle`
   body {

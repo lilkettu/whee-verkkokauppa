@@ -10,7 +10,11 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         loader: "babel-loader"
-      }
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-react-loader'
+      }      
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
