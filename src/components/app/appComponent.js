@@ -1,4 +1,5 @@
 import React from "react"
+import { Route, Link } from "react-router-dom"
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import theme from '../../theme'
 import Products from '../product/productContainer'
@@ -17,16 +18,21 @@ const App = () => {
       <React.Fragment>
         <GlobalStyle />
         <Header>
-          <Title>whee</Title>
-          <a>Cart</a>
-        </Header>
+          <Title><Link to="/">whee</Link></Title>
 
-        <div>
-          <Products />
-          <Cart />
-        </div>
+
+            <ShoppingCart>
+              <Link to="/cart">
+                <CartIcon />
+              </Link>
+            </ShoppingCart>
+        </Header>
+        <Body>
+          <Route exact path="/" component={Products} />
+          <Route path="/cart" component={Cart} />
+        </Body>
       </React.Fragment>
-    </ThemeProvider>
+    </ThemeProvider >
   )
 }
 
@@ -36,10 +42,18 @@ const Header = styled.div`
   align-items: baseline;
 `
 
+const ShoppingCart = styled.span`
+  width: 2em;
+  fill: #ebebeb;
+`
+
 const Title = styled.h1`
   padding: 0em 1em;
-  font-size: 3em;
   font-family: 'Pacifico', cursive;
+`
+
+const Body = styled.div`
+  padding: 5%;
 `
 
 export default App
