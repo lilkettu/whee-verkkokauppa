@@ -1,10 +1,10 @@
 import React from "react"
-import { Route, Link } from "react-router-dom"
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+import {Route} from "react-router-dom"
+import styled, {createGlobalStyle, ThemeProvider} from 'styled-components'
 import theme from '../../theme'
+import Header from '../header/headerComponent'
 import Products from '../product/productContainer'
 import Cart from '../cart/cartContainer'
-import CartIcon from '../../svgsrc/shopping-cart.svg'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -18,16 +18,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <React.Fragment>
         <GlobalStyle />
-        <Header>
-          <Title><Link to="/">whee</Link></Title>
-
-
-            <ShoppingCart>
-              <Link to="/cart">
-                <CartIcon />
-              </Link>
-            </ShoppingCart>
-        </Header>
+        <Header />
         <Body>
           <Route exact path="/" component={Products} />
           <Route path="/cart" component={Cart} />
@@ -37,24 +28,8 @@ const App = () => {
   )
 }
 
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-`
-
-const ShoppingCart = styled.span`
-  width: 2em;
-  fill: #ebebeb;
-`
-
-const Title = styled.h1`
-  padding: 0em 1em;
-  font-family: 'Pacifico', cursive;
-`
-
 const Body = styled.div`
-  padding: 5%;
+  margin: 5em 5%;
 `
 
 export default App
