@@ -5,7 +5,7 @@ import Cart from './cartComponent'
 import { removeItem } from './cartReducer'
 
 const mapStatetoProps = state => ({
-    itemsInCart: state.cart.itemsInCart,
+    cart: state.cart.cart,
     total: state.cart.total
 })
 

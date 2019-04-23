@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-const CartHeader = ({ itemsInCart }) => {
-    const items = Object.values(itemsInCart).reduce((total, quantity) => total + quantity, 0);
+const CartHeader = ({ cart }) => {
+    const items = Object.values(cart).reduce((total, quantity) => total + quantity, 0);
     
     return (
         <p>{items} items in cart</p>
@@ -10,7 +10,7 @@ const CartHeader = ({ itemsInCart }) => {
 }
 
 CartHeader.propTypes = {
-    itemsInCart: PropTypes.object
+    cart: PropTypes.object
 }
 
 export default CartHeader;

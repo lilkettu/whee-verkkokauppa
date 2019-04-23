@@ -1,74 +1,112 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from 'styled-components'
-import { products } from '../../products.js'
+import CartItem from './cartItemComponent'
+import {products} from '../../products.js'
 
-const Cart = ({ itemsInCart, total, removeItem }) => {
+const Cart = ({cart, total, removeItem}) => {
     const productList = products.products;
+    const items = Object.values(cart).reduce((total, quantity) => total + quantity, 0);
 
     return (
-        <>
-            <Title>Cart</Title>
-            <List>
-                {productList.map((product =>
-                    <Item key={product.id}>
-                        <h2>{product.name}</h2>
-                        <Quantity>Quantity: {itemsInCart[product.id]}</Quantity>
-                        <RemoveButton
-                            onClick={() => removeItem(product.id, product.price)}>
-                            Remove
-                        </RemoveButton>
-                    </Item>
-                ))}
-            </List>
-            <Total>Total: {total} €</Total>
-        </>
+        <CartContainer>
+            <Left>
+                <Border>
+                    <Title>
+                        <h1>Shopping cart </h1>
+                       {items === 1 ?
+                        <h2>1 item</h2> :
+                        <h2>{items} items</h2>
+                       }
+                    </Title>
+                    <List>
+                        {productList.map((product =>
+                            <li key={product.id}>
+                                <CartItem product={product} cart={cart} quantity={cart[product.id]} removeItem={removeItem} />
+                            </li>
+                        ))}
+                    </List>
+                </Border>
+            </Left>
+            <Right>
+                <Border>
+                    <Total>Total</Total>
+                    <Subtotal>
+                        <p>Sub-total</p>
+                        <p>{total} €</p>
+                    </Subtotal>
+                    <Subtotal>
+                        <p>Delivery</p>
+                        <p>free</p>
+                    </Subtotal>
+                    <CheckoutButton>Checkout</CheckoutButton>
+                </Border>
+            </Right>
+        </CartContainer>
     )
 }
 
-const Title = styled.h1`
+const CartContainer = styled.div`
+    margin-left: 20%;
+    margin-right: 20%
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+`
+
+const Left = styled.div`
+    flex-basis: 70%;
+    background-color: white;
+`
+
+const Right = styled.div`
+    flex-basis: 30%;
+    background-color: white;
+`
+
+const Border = styled.div`
+    border-width: 1.3em;
+    border-style: solid;
+    border-color: #EBEBEB;
+    padding: 2em;
+`
+
+const Title = styled.div`
+    border-bottom: 0.06em solid #EBEBEB;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
 `
 
 const List = styled.ul`
     list-style-type: none;
-    padding: 5em 35% 5em;
 `
 
-const Item = styled.li`
+const Total = styled.h2`
+    border-bottom: 0.06em solid #EBEBEB;
+`
+const Subtotal = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    padding: 1em;
 `
 
-const Quantity = styled.p`
-    display: flex;
-    justify-content: center;
-`
-
-const RemoveButton = styled.button`
+const CheckoutButton = styled.button`
     background: white;
     text-transform: uppercase;
+    font-size: 1.15em;
+    padding: 0.5em 1.25em;
+    margin-top: 2em;
+    width: 100%;
     border: 1px solid;
-    padding: 1em;
     font-family: 'Playfair Display', serif;
 
-    :active {
-        background: black;
-        color: white;
-    }
-`
-
-const Total = styled.p`
-    display: flex;
-    justify-content: center;
-    padding: 0em 5em 5em;
+:active {
+    background: black;
+    color: white;
+}
 `
 
 Cart.propTypes = {
-    itemsInCart: PropTypes.object.isRequired,
+    cart: PropTypes.object.isRequired,
     total: PropTypes.number.isRequired,
     removeItem: PropTypes.func.isRequired
 }
