@@ -6,6 +6,7 @@ const Product = ({ id, name, description, price, addItem }) => {
     return (
         <ProductContainer>
             <div>
+            <img src={image}></img>
                 <Name>{name}</Name>
                 <p>{description}</p>
             </div>
