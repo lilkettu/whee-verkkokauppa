@@ -2,36 +2,50 @@ import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-const Product = ({ id, name, description, price, addItem }) => {
+const Product = ({id, name, description, price, image, addItem}) => {
     return (
         <ProductContainer>
-            <div>
-            <img src={image}></img>
+            <Image src={image}></Image>
+            <Center>
                 <Name>{name}</Name>
                 <p>{description}</p>
-            </div>
-            <div>
+            </Center>
+            <Right>
                 <Price>{price} €</Price>
                 <AddButton
                     onClick={() => addItem(id, price)}>
                     Add to cart
                 </AddButton>
-            </div>
+            </Right>
         </ProductContainer>
     )
 }
 
 const ProductContainer = styled.article`
-    padding: 2rem 25%;
     font-size: 1rem;
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
+    padding: 1em;
+`
+
+const Image = styled.img`
+  padding: 1em;
+`
+
+const Center = styled.div`
+    justify-content: flex-start;
+    flex-basis: 60%;
 `
 
 const Name = styled.h2`
-    font-size: xx-large;
+    font-size: 2em;
     font-weight: bold;
     font-style: italic;
+`
+
+const Right = styled.div`
+    justify-content: flex-end;
 `
 
 const Price = styled.p`
@@ -43,8 +57,7 @@ const Price = styled.p`
 const AddButton = styled.button`
     background: white;
     text-transform: uppercase;
-    font-size: large;
-    font-weight: bold;
+    font-size: 1.15em;
     padding: 0.5em 1.25em;
     border: 1px solid;
     font-family: 'Playfair Display', serif;
@@ -63,4 +76,4 @@ Product.propTypes = {
     addItem: PropTypes.func
 }
 
-export default Product;
+export default Product

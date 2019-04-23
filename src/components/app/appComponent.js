@@ -23,13 +23,21 @@ const App = () => {
           <Route exact path="/" component={Products} />
           <Route path="/cart" component={Cart} />
         </Body>
+        <Footer />
       </React.Fragment>
     </ThemeProvider >
   )
 }
 
 const Body = styled.div`
-  margin: 5em 5%;
+  margin-top: 3em;
+`
+const Footer = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 99.2%;
+  height: 2.5rem;
+  background-color: #D7D7D7;
 `
 
 export default App
