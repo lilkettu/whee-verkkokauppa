@@ -16,8 +16,8 @@ const ProductList = ({ products, addItem }) => {
 }
 
 const List = styled.ul`
-    padding: 20px;
     list-style-type: none;
+    margin: 0em 25%;
 `
 
 ProductList.propTypes = {
