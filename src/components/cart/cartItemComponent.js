@@ -3,10 +3,11 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 
 const CartItem = ({product, quantity, removeItem}) => {
+  const imageUrl = `/images/${product.image}`
     return (
       quantity > 0 ?
       <ItemContainer>
-        <Image src={product.image}></Image>
+        <img src={imageUrl} height="70em" width="70em" />
         <Center>
           <h3>{product.name}</h3>
           <RemoveButton

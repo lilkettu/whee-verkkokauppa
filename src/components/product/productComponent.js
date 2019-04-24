@@ -3,9 +3,10 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 
 const Product = ({id, name, description, price, image, addItem}) => {
+    const imageUrl = `/images/${image}`
     return (
         <ProductContainer>
-            <Image src={image}></Image>
+            <img src={imageUrl} height="150em" width="150em" />
             <Center>
                 <Name>{name}</Name>
                 <p>{description}</p>
@@ -25,16 +26,11 @@ const ProductContainer = styled.article`
     font-size: 1rem;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    padding: 1em;
-`
-
-const Image = styled.img`
-  padding: 1em;
+    padding: 3em;
+    border-bottom: 0.06em solid #EBEBEB;
 `
 
 const Center = styled.div`
-    justify-content: flex-start;
     flex-basis: 60%;
 `
 
