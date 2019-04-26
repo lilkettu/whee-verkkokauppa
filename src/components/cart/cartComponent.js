@@ -10,8 +10,8 @@ const Cart = ({cart, removeItem, checkout}) => {
 
     const itemCount = Object.values(cart).reduce((total, quantity) => total + quantity, 0)
 
-    const totalPrice = (Object.entries(cart)
-        .map((item, i) => item[1] * productList[i].price)
+    const totalPrice = (Object.values(cart)
+        .map((item, i) => item * productList[i].price)
         .reduce((total, subtotal) => total + subtotal, 0))
 
     return (
@@ -19,7 +19,7 @@ const Cart = ({cart, removeItem, checkout}) => {
             <Left>
                 <Border>
                     <Title>
-                        <h1>Shopping cart </h1>
+                        <h1>Shopping cart</h1>
                         {itemCount === 1 ?
                             <h2>1 item</h2> :
                             <h2>{itemCount} items</h2>

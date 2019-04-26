@@ -1,9 +1,19 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-const CartItem = ({product, quantity, removeItem}) => {
+function CartItem({product, quantity, removeItem}) {
   const imageUrl = `/images/${product.image}`
+
+  const [removed, setRemoved] = useState(false)
+
+  useEffect(() => {
+    if (removed) {
+      setTimeout(() => {
+        setRemoved(false)
+      }, 1500)
+    }
+  })
 
   return (
     quantity > 0 ?
@@ -12,16 +22,23 @@ const CartItem = ({product, quantity, removeItem}) => {
         <Center>
           <h3>{product.name}</h3>
           <RemoveButton
-            onClick={() => removeItem(product.id)}>
+            onClick={() => {
+              removeItem(product.id)
+              setRemoved(true)
+            }}>
             Remove item
-        </RemoveButton>
+          </RemoveButton>
         </Center>
         <div>
           <ItemInfo>Qty {quantity}</ItemInfo>
           <ItemInfo>{product.price} €</ItemInfo>
         </div>
       </ItemContainer>
-      : <></>
+      :
+      quantity === 0 && removed ?
+        <Removed>Item removed</Removed> :
+        <></>
+
   )
 }
 
@@ -58,6 +75,13 @@ const RemoveButton = styled.button`
       color: white;
   }
 `
+const Removed = styled.div`
+  display: flex;
+  align-items: center;
+  height: 6.125em;
+  padding: 1.5em 0;
+`
+
 CartItem.propTypes = {
   product: PropTypes.object,
   quantity: PropTypes.number,
