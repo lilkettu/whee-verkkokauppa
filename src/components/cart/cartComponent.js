@@ -49,7 +49,7 @@ const Cart = ({cart, removeItem, checkout}) => {
                         <CheckoutButton
                             onClick={() => checkout()}>
                             Checkout
-                    </CheckoutButton>
+                        </CheckoutButton>
                     </Link>
                 </Border>
             </Right>
