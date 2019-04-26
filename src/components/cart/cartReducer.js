@@ -6,31 +6,29 @@ const initialState = {
         1: 0,
         2: 0,
         3: 0
-    },
-    total: 0
+    }
 }
 
 const cartReducer = (state = initialState, action) => {
     if (action.type === ADD_ITEM) {
-        const cart = state.cart
+        let cart = Object.assign({}, state.cart)
         cart[action.id]++
 
         return {
             ...state,
-            cart: cart,
-            total: state.total + action.price
+            cart
         }
     }
 
     if (action.type === REMOVE_ITEM) {
-        const cart = state.cart
+        let cart = Object.assign({}, state.cart)
+        
         if (cart[action.id] > 0) {
             cart[action.id]--
-
+            
             return {
                 ...state,
-                cart: cart,
-                total: state.total - action.price
+                cart
             }
         }
 
@@ -38,16 +36,14 @@ const cartReducer = (state = initialState, action) => {
     return state;
 }
 
-export const addItem = (id, price) => ({
+export const addItem = id => ({
     type: ADD_ITEM,
-    id,
-    price
+    id
 })
 
-export const removeItem = (id, price) => ({
+export const removeItem = id => ({
     type: REMOVE_ITEM,
-    id,
-    price
+    id
 })
 
 export default cartReducer

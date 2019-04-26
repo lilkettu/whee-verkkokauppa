@@ -1,12 +1,17 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import CartItem from './cartItemComponent'
 import {products} from '../../products.js'
 
-const Cart = ({cart, total, removeItem}) => {
+const Cart = ({cart, removeItem}) => {
     const productList = products.products;
-    const items = Object.values(cart).reduce((total, quantity) => total + quantity, 0);
+
+    const itemCount = Object.values(cart).reduce((total, quantity) => total + quantity, 0)
+    
+    const totalPrice = (Object.entries(cart)
+        .map((item, i) => item[1] * productList[i].price)
+        .reduce((total, subtotal) => total + subtotal, 0))
 
     return (
         <CartContainer>
@@ -14,15 +19,15 @@ const Cart = ({cart, total, removeItem}) => {
                 <Border>
                     <Title>
                         <h1>Shopping cart </h1>
-                       {items === 1 ?
-                        <h2>1 item</h2> :
-                        <h2>{items} items</h2>
-                       }
+                        {itemCount === 1 ?
+                            <h2>1 item</h2> :
+                            <h2>{itemCount} items</h2>
+                        }
                     </Title>
                     <List>
                         {productList.map((product =>
                             <li key={product.id}>
-                                <CartItem product={product} cart={cart} quantity={cart[product.id]} removeItem={removeItem} />
+                                <CartItem product={product} quantity={cart[product.id]} removeItem={removeItem} />
                             </li>
                         ))}
                     </List>
@@ -33,7 +38,7 @@ const Cart = ({cart, total, removeItem}) => {
                     <Total>Total</Total>
                     <Subtotal>
                         <p>Sub-total</p>
-                        <p>{total} €</p>
+                        <p>{totalPrice} €</p>
                     </Subtotal>
                     <Subtotal>
                         <p>Delivery</p>
@@ -47,8 +52,6 @@ const Cart = ({cart, total, removeItem}) => {
 }
 
 const CartContainer = styled.div`
-    margin-left: 20%;
-    margin-right: 20%
     display: flex;
     justify-content: space-between;
 `
@@ -106,8 +109,6 @@ const CheckoutButton = styled.button`
 `
 
 Cart.propTypes = {
-    cart: PropTypes.object.isRequired,
-    total: PropTypes.number.isRequired,
     removeItem: PropTypes.func.isRequired
 }
 

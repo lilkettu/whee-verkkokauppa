@@ -4,40 +4,40 @@ import styled from "styled-components"
 
 const CartItem = ({product, quantity, removeItem}) => {
   const imageUrl = `/images/${product.image}`
-    return (
-      quantity > 0 ?
+  
+  return (
+    quantity > 0 ?
       <ItemContainer>
         <img src={imageUrl} height="70em" width="70em" />
         <Center>
           <h3>{product.name}</h3>
           <RemoveButton
-            onClick={() => removeItem(product.id, product.price)}>
+            onClick={() => removeItem(product.id)}>
             Remove item
         </RemoveButton>
         </Center>
-        <Right>
-          <p>Qty {quantity}</p>
+        <div>
+          <Quantity>Qty {quantity}</Quantity>
           <p>{product.price} €</p>
-        </Right>
+        </div>
       </ItemContainer>
-     : <></>
-    )
+      : <></>
+  )
 }
 
 const ItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 1em;
+  align-items: flex-end;
+  padding: 1.5em;
+  padding-left: 0em;
 `
 
-const Image = styled.img`
-  padding: 1em;
-`
 const Center = styled.div`
-  justify-content: flex-start;
-  flex-basis: 80%;
+  flex-basis: 75%;
 `
-const Right = styled.div`
+const Quantity = styled.div`
+  display: flex;
   justify-content: flex-end;
 `
 const RemoveButton = styled.button`
