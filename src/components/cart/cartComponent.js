@@ -1,14 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import {Link} from "react-router-dom"
 import CartItem from './cartItemComponent'
 import {products} from '../../products.js'
 
-const Cart = ({cart, removeItem}) => {
+const Cart = ({cart, removeItem, checkout}) => {
     const productList = products.products;
 
     const itemCount = Object.values(cart).reduce((total, quantity) => total + quantity, 0)
-    
+
     const totalPrice = (Object.entries(cart)
         .map((item, i) => item[1] * productList[i].price)
         .reduce((total, subtotal) => total + subtotal, 0))
@@ -44,7 +45,12 @@ const Cart = ({cart, removeItem}) => {
                         <p>Delivery</p>
                         <p>free</p>
                     </Subtotal>
-                    <CheckoutButton>Checkout</CheckoutButton>
+                    <Link to="/">
+                        <CheckoutButton
+                            onClick={() => checkout()}>
+                            Checkout
+                    </CheckoutButton>
+                    </Link>
                 </Border>
             </Right>
         </CartContainer>
@@ -109,7 +115,8 @@ const CheckoutButton = styled.button`
 `
 
 Cart.propTypes = {
-    removeItem: PropTypes.func.isRequired
+    removeItem: PropTypes.func.isRequired,
+    checkout: PropTypes.func.isRequired
 }
 
 export default Cart;
