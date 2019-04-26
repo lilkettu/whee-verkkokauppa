@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import {Link} from "react-router-dom"
 import ShoppingCart from '../../svgsrc/shopping-cart.svg'
 
-function HeaderComponent() {
+const HeaderComponent = ({cart}) => {
+  const items = Object.values(cart).reduce((total, quantity) => total + quantity, 0)
+ 
   return (
     <Header>
       <Title>
@@ -12,7 +14,12 @@ function HeaderComponent() {
       <Subtitle>The most definitive shape store in the world</Subtitle>
       <div>
         <StyledLink to="/cart">
-          <p>items in cart</p>
+          {
+            items.length === 1 ?
+              <p>1 item in cart</p> :
+              <p>{items} items in cart</p>
+          }
+
           <CartIcon />
         </StyledLink>
       </div>

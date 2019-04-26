@@ -6,7 +6,7 @@ const Product = ({id, name, description, price, image, addItem}) => {
     const imageUrl = `/images/${image}`
     return (
         <ProductContainer>
-            <img src={imageUrl} height="150em" width="150em" />
+            <img src={imageUrl} height="120em" width="120em" />
             <Center>
                 <Name>{name}</Name>
                 <p>{description}</p>
@@ -26,6 +26,7 @@ const ProductContainer = styled.article`
     font-size: 1rem;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     padding: 3em;
     border-bottom: 0.06em solid #EBEBEB;
 `
@@ -35,17 +36,16 @@ const Center = styled.div`
 `
 
 const Name = styled.h2`
-    font-size: 2em;
+    font-size: 1.75em;
     font-weight: bold;
     font-style: italic;
 `
 
 const Right = styled.div`
-    justify-content: flex-end;
 `
 
 const Price = styled.p`
-    font-size: xx-large;
+    font-size: 1.7em;
     display: flex;
     justify-content: flex-end;
 `
