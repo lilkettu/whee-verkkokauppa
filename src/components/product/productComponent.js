@@ -28,7 +28,7 @@ const ProductContainer = styled.article`
     justify-content: space-between;
     align-items: flex-end;
     padding: 3em;
-    border-bottom: 0.06em solid #EBEBEB;
+    border-bottom: 0.06em solid ${props => props.theme.lightGrey};
 `
 
 const Center = styled.div`
@@ -55,7 +55,7 @@ const Price = styled.p`
 `
 
 const AddButton = styled.button`
-    background: white;
+    background: ${props => props.theme.white};
     text-transform: uppercase;
     font-size: 1.15em;
     padding: 0.5em 1.25em;
@@ -63,8 +63,8 @@ const AddButton = styled.button`
     font-family: 'Playfair Display', serif;
 
     :active {
-        background: black;
-        color: white;
+        background: ${props => props.theme.black};
+        color: ${props => props.theme.white};
     }
 `
 

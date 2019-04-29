@@ -64,23 +64,23 @@ const CartContainer = styled.div`
 
 const Left = styled.div`
     flex-basis: 70%;
-    background-color: white;
+    background-color: ${props => props.theme.white};
 `
 
 const Right = styled.div`
     flex-basis: 30%;
-    background-color: white;
+    background-color: ${props => props.theme.white};
 `
 
 const Border = styled.div`
     border-width: 1.3em;
     border-style: solid;
-    border-color: #EBEBEB;
+    border-color: ${props => props.theme.lightGrey};
     padding: 2em;
 `
 
 const Title = styled.div`
-    border-bottom: 0.06em solid #EBEBEB;
+    border-bottom: 0.06em solid ${props => props.theme.lightGrey};
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -91,7 +91,7 @@ const List = styled.ul`
 `
 
 const Total = styled.h2`
-    border-bottom: 0.06em solid #EBEBEB;
+    border-bottom: 0.06em solid ${props => props.theme.lightGrey};
 `
 const Subtotal = styled.div`
     display: flex;
@@ -99,7 +99,7 @@ const Subtotal = styled.div`
 `
 
 const CheckoutButton = styled.button`
-    background: white;
+    background: ${props => props.theme.white};
     text-transform: uppercase;
     font-size: 1.15em;
     padding: 0.5em 1.25em;
@@ -109,8 +109,8 @@ const CheckoutButton = styled.button`
     font-family: 'Playfair Display', serif;
 
 :active {
-    background: black;
-    color: white;
+    background: ${props => props.theme.black};
+    color: ${props => props.theme.white};
 }
 `
 

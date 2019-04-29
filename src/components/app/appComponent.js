@@ -9,7 +9,9 @@ import Cart from '../cart/cartContainer'
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Playfair Display', serif;
-    color: ${props => props.theme.black}
+    color: ${props => props.theme.black};
+    position: relative;
+    min-height: 100vh;
   }
 `
 
@@ -18,22 +20,16 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <React.Fragment>
         <GlobalStyle />
-        <PageContainer>
-          <Header />
-          <Content>
-            <Route exact path="/" component={Products} />
-            <Route path="/cart" component={Cart} />
-          </Content>
-          <Footer />
-        </PageContainer>
+        <Header />
+        <Content>
+          <Route exact path="/" component={Products} />
+          <Route path="/cart" component={Cart} />
+        </Content>
+        <Footer />
       </React.Fragment>
     </ThemeProvider >
   )
 }
-const PageContainer = styled.div`
-  position: relative;
-  min-height: 100vh;
-`
 
 const Content = styled.div`
   padding-bottom: 7rem;
@@ -45,7 +41,7 @@ const Footer = styled.div`
   bottom: 0;
   width: 100%;
   height: 5rem;
-  background-color: #D7D7D7;
+  background-color: ${props => props.theme.darkGrey};
 `
 
 export default App

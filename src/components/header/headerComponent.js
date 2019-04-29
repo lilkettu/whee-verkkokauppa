@@ -28,8 +28,8 @@ const Header = styled.div`
   justify-content: space-between;
   padding: 0 25rem;
   align-items: center;
-  background-color: #EBEBEB;
-  background-image: linear-gradient(#D7D7D7, #EBEBEB);
+  background-color: ${props => props.theme.lightGrey};
+  background-image: linear-gradient(${props => props.theme.darkGrey}, ${props => props.theme.lightGrey});
 `
 
 const Title = styled.h1`
@@ -47,7 +47,7 @@ const Subtitle = styled.p`
 
 const CartIcon = styled(ShoppingCart)`
   width: 2.5em;
-  fill: black;
+  fill: ${props => props.theme.black};
   padding: 1em;
 `
 
@@ -58,7 +58,7 @@ const StyledLink = styled(Link)`
   
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
-    color: black; 
+    color: ${props => props.theme.black}; 
 }
 `
 
