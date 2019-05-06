@@ -5,7 +5,7 @@ import {Link} from "react-router-dom"
 import CartItem from './cartItemComponent'
 import {products} from '../../products.js'
 
-const Cart = ({cart, removeItem, checkout}) => {
+const Cart = ({cart, setQuantity, removeItem, checkout}) => {
     const productList = products.products;
 
     const itemCount = Object.values(cart).reduce((total, quantity) => total + quantity, 0)
@@ -16,7 +16,7 @@ const Cart = ({cart, removeItem, checkout}) => {
 
     return (
         <CartContainer>
-            <Left>
+            <ShoppingCart>
                 <Border>
                     <Title>
                         <h1>Shopping cart</h1>
@@ -28,23 +28,23 @@ const Cart = ({cart, removeItem, checkout}) => {
                     <List>
                         {productList.map((product =>
                             <li key={product.id}>
-                                <CartItem product={product} quantity={cart[product.id]} removeItem={removeItem} />
+                                <CartItem product={product} quantity={cart[product.id]} setQuantity={setQuantity} removeItem={removeItem} />
                             </li>
                         ))}
                     </List>
                 </Border>
-            </Left>
-            <Right>
+            </ShoppingCart>
+            <Checkout>
                 <Border>
                     <Total>Total</Total>
-                    <Subtotal>
+                    <Amount>
                         <p>Sub-total</p>
                         <p>{totalPrice} €</p>
-                    </Subtotal>
-                    <Subtotal>
+                    </Amount>
+                    <Amount>
                         <p>Delivery</p>
                         <p>free</p>
-                    </Subtotal>
+                    </Amount>
                     <Link to="/">
                         <CheckoutButton
                             onClick={() => checkout()}>
@@ -52,24 +52,37 @@ const Cart = ({cart, removeItem, checkout}) => {
                         </CheckoutButton>
                     </Link>
                 </Border>
-            </Right>
+            </Checkout>
         </CartContainer>
     )
 }
 
 const CartContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    padding-top: 1rem;  
+    flex-wrap: wrap;
 `
 
-const Left = styled.div`
-    flex-basis: 70%;
+const ShoppingCart = styled.div`
+    min-width: 30em;
     background-color: ${props => props.theme.white};
+    box-sizing: border-box;
+    flex: 1;
+
+    @media (max-width: 600px) {
+        min-width: 25em;
+    }
 `
 
-const Right = styled.div`
-    flex-basis: 30%;
+const Checkout = styled.div`
+    width: 19em;
     background-color: ${props => props.theme.white};
+    box-sizing: border-box;
+
+    @media (max-width: 960px) {
+        flex: 1;
+    }
 `
 
 const Border = styled.div`
@@ -77,6 +90,7 @@ const Border = styled.div`
     border-style: solid;
     border-color: ${props => props.theme.lightGrey};
     padding: 2em;
+    min-height: 16.6em;
 `
 
 const Title = styled.div`
@@ -88,12 +102,13 @@ const Title = styled.div`
 
 const List = styled.ul`
     list-style-type: none;
+    padding: 0;
 `
 
 const Total = styled.h2`
     border-bottom: 0.06em solid ${props => props.theme.lightGrey};
 `
-const Subtotal = styled.div`
+const Amount = styled.div`
     display: flex;
     justify-content: space-between;
 `
@@ -115,6 +130,7 @@ const CheckoutButton = styled.button`
 `
 
 Cart.propTypes = {
+    addItem: PropTypes.func.isRequired,
     removeItem: PropTypes.func.isRequired,
     checkout: PropTypes.func.isRequired
 }

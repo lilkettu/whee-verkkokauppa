@@ -4,6 +4,7 @@ import styled from "styled-components"
 
 const Product = ({id, name, description, price, image, addItem}) => {
     const imageUrl = `/images/${image}`
+    
     return (
         <ProductContainer>
             <Img src={imageUrl} />
@@ -14,7 +15,7 @@ const Product = ({id, name, description, price, image, addItem}) => {
             <Right>
                 <Price>{price} €</Price>
                 <AddButton
-                    onClick={() => addItem(id, price)}>
+                    onClick={() => addItem(id)}>
                     Add to cart
                 </AddButton>
             </Right>
@@ -25,42 +26,50 @@ const Product = ({id, name, description, price, image, addItem}) => {
 const ProductContainer = styled.article`
     font-size: 1rem;
     display: flex;
-    justify-content: space-between;
     align-items: flex-end;
-    padding: 3em;
-    border-bottom: 0.06em solid ${props => props.theme.lightGrey};
+    padding-bottom: 2.5em;
+    padding-top: 1.8em;
 `
 
 const Center = styled.div`
-    flex-basis: 60%;
+    padding-left: 2em;
+    padding-right: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
 `
 
 const Name = styled.p`
-    font-size: 1.75em;
+    font-size: 1.6em;
     font-weight: bold;
     font-style: italic;
+    margin: 0.5em 0;
 `
 
 const Right = styled.div`
+align-items: flex-start;
 `
 const Img = styled.img`
-    height: 8rem;
-    width: 8rem;
+    height: 7rem;
+    width: auto;
 `
 
 const Price = styled.p`
-    font-size: 1.7em;
+    font-size: 1.6em;
     display: flex;
     justify-content: flex-end;
+    margin-top: 0;
 `
 
 const AddButton = styled.button`
     background: ${props => props.theme.white};
     text-transform: uppercase;
     font-size: 1.15em;
-    padding: 0.5em 1.25em;
+    padding: 0.4em 1.2em;
     border: 1px solid;
     font-family: 'Playfair Display', serif;
+    margin-bottom: 0.4em;
 
     :active {
         background: ${props => props.theme.black};

@@ -1,5 +1,6 @@
 const ADD_ITEM = "whee/cart/ADD_ITEM"
 const REMOVE_ITEM = "whee/cart/REMOVE_ITEM"
+const SET_QUANTITY = "whee/cart/SET_QUANTITY"
 const CHECKOUT = "whee/cart/CHECKOUT"
 
 const initialState = {
@@ -15,13 +16,17 @@ const cartReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_ITEM:
-            cart[action.id]++
+            if (cart[action.id] < 1) {
+                cart[action.id] = 1
+            }
             return {...state, cart}
 
         case REMOVE_ITEM:
-            if (cart[action.id] > 0) {
-                cart[action.id]--
-            }
+            cart[action.id] = 0
+            return {...state, cart}
+
+        case SET_QUANTITY:
+            cart[action.id] = action.pcs
             return {...state, cart}
 
         case CHECKOUT:
@@ -41,6 +46,12 @@ export const addItem = id => ({
 export const removeItem = id => ({
     type: REMOVE_ITEM,
     id
+})
+
+export const setQuantity = (id, pcs) => ({
+    type: SET_QUANTITY,
+    id,
+    pcs
 })
 
 export const checkout = () => ({

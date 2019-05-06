@@ -7,9 +7,9 @@ const ProductList = ({ products, addItem }) => {
     return (
         <List>
             {products.map(product => (
-                <li key={product.id}>
+                <Item key={product.id}>
                     <Product {...product} addItem={addItem} />
-                </li>
+                </Item>
             ))}
         </List>
     )
@@ -17,6 +17,13 @@ const ProductList = ({ products, addItem }) => {
 
 const List = styled.ul`
     list-style-type: none;
+`
+
+const Item = styled.li`
+    border-bottom: 0.06em solid ${props => props.theme.lightGrey};
+    :last-of-type {
+        border-bottom: 0;
+    }
 `
 
 ProductList.propTypes = {

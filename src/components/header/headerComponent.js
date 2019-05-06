@@ -8,53 +8,72 @@ const HeaderComponent = ({cart}) => {
 
   return (
     <Header>
-      <StyledLink to="/">
-        <Title>whee</Title>
-        <Subtitle>The most definitive shape store in the world</Subtitle>
-      </StyledLink>
-
-      <StyledLink to="/cart">
-        {itemCount.length === 1 ?
-          <p>1 item in cart</p> :
-          <p>{itemCount} items in cart</p>}
-        <CartIcon />
-      </StyledLink>
+      <Links>
+        <Title>
+          <StyledLink to="/">whee</StyledLink>
+        </Title>
+        <Subtitle>
+          <StyledLink to="/">The most definitive shape store in the world</StyledLink>
+        </Subtitle>
+        <StyledLink to="/cart">
+          {itemCount === 1 ?
+            <p>1 item in cart</p> :
+            <p>{itemCount} items in cart</p>}
+          <CartIcon />
+        </StyledLink>
+      </Links>
     </Header>
   )
 }
 
 const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 25rem;
-  align-items: center;
   background-color: ${props => props.theme.lightGrey};
   background-image: linear-gradient(${props => props.theme.darkGrey}, ${props => props.theme.lightGrey});
+  padding: 1em 2em;
+`
+
+const Links = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  @media(max-width: 768px) {
+   display: flex;
+   justify-content: space-between;
+  }
 `
 
 const Title = styled.h1`
   font-size: 3.5em;
-  padding-right: 1.8em;
   font-family: 'Pacifico', cursive;
-  margin-top: 0.4em;
-  margin-bottom: 0.6em;
+  margin: 0;
+  margin-bottom: 0.2em;
 `
 
 const Subtitle = styled.p`
   font-family: 'Pacifico', cursive;
   font-size: 1.7em;
+  margin-left: 2em;
+  margin-right: auto;
+
+  @media (max-width: 960px) {
+    font-size: 1.2em;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const CartIcon = styled(ShoppingCart)`
   width: 2.5em;
   fill: ${props => props.theme.black};
-  padding: 1em;
+  padding-left: 1em;
 `
 
 const StyledLink = styled(Link)`
   display: flex;
-  align-items: center;
-  justify-content: center;
   
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;

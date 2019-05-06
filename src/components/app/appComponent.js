@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.black};
     position: relative;
     min-height: 100vh;
+    margin: 0;
   }
 `
 
@@ -32,15 +33,17 @@ const App = () => {
 }
 
 const Content = styled.div`
-  padding-bottom: 7rem;
-  margin: 3rem 20% 0 25%;
+  max-width: 60rem;
+  margin: auto;
+  padding: 0 1.5rem 4.5rem 1rem;
+  box-sizing: border-box;
 `
 
 const Footer = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 5rem;
+  height: 2.5rem;
   background-color: ${props => props.theme.darkGrey};
 `
 
