@@ -1,13 +1,13 @@
-import React from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 const Product = ({id, name, description, price, image, addItem}) => {
-    const imageUrl = `/images/${image}`
+    const imagePath = `/images/${image}`
     
     return (
         <ProductContainer>
-            <Img src={imageUrl} />
+            <Img src={imagePath} />
             <Center>
                 <Name>{name}</Name>
                 <p>{description}</p>
@@ -82,7 +82,8 @@ Product.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    addItem: PropTypes.func
+    image: PropTypes.string,
+    addItem: PropTypes.func.isRequired
 }
 
 export default Product

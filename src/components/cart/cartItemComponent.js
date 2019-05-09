@@ -1,52 +1,50 @@
-import React, {useState, useEffect} from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
+import React, {useState} from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 function CartItem({product, quantity, setQuantity, removeItem}) {
-  const imageUrl = `/images/${product.image}`
+  const imagePath = `/images/${product.image}`
 
   const [removed, setRemoved] = useState(false)
 
   const qtyList = Array.from({length: 10}, (_, i) => i + 1)
+    .map(i => <option key={i} value={i}>{i}</option>)
 
-  useEffect(() => {
-    if (removed) {
-      setTimeout(() => {
-        setRemoved(false)
-      }, 1500)
-    }
-  })
+  const handleQuantityChange = event => setQuantity(product.id, parseInt(event.target.value))
+
+  const handleRemove = () => {
+    removeItem(product.id)
+    setRemoved(true)
+
+    setTimeout(() => {
+      setRemoved(false)
+    }, 1500)
+  }
 
   return (
     quantity > 0 ?
       <ItemContainer>
-        <Img src={imageUrl} />
-        
+
+        <Img src={imagePath} />
+
         <Center>
           <h3>{product.name}</h3>
-          <RemoveButton
-            onClick={() => {
-              removeItem(product.id)
-              setRemoved(true)
-            }}>
+          <RemoveButton onClick={handleRemove}>
             Remove item
           </RemoveButton>
         </Center>
 
-        <div>
-          <Quantity>
-            <ItemInfo>Qty</ItemInfo>
-            
-            <Select value={quantity} onChange={event => setQuantity(product.id, parseInt(event.target.value))}>
-              {qtyList.map((i => <option key={i} value={i}>{i}</option>))}
-            </Select>
+        <Right>
+          <Quantity value={quantity} onChange={handleQuantityChange}>
+            {qtyList}
           </Quantity>
 
           <ItemInfo>{product.price} €</ItemInfo>
-        </div>
+        </Right>
+
       </ItemContainer>
       :
-      quantity === 0 && removed ?
+      removed ?
         <Removed>Item removed</Removed> :
         <></>
   )
@@ -71,18 +69,20 @@ const Center = styled.div`
   margin-right: auto;
   padding-left: 1em;
 `
-const Quantity = styled.div`
+const Right = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 `
-const Select = styled.select`
-  margin-left: 0.5em;
+const Quantity = styled.select`
+  width: 4em;
+  height: 2em;
 `
 const ItemInfo = styled.p`
   display: flex;
   justify-content: flex-end;
   white-space: nowrap;
-  margin: 0.7em 0;
+  margin-bottom: 0;
 `
 const RemoveButton = styled.button`
   background: white;
@@ -105,10 +105,10 @@ const Removed = styled.div`
 `
 
 CartItem.propTypes = {
-  product: PropTypes.object,
-  quantity: PropTypes.number,
-  addItem: PropTypes.func,
-  removeItem: PropTypes.func
+  product: PropTypes.object.isRequired,
+  quantity: PropTypes.number.isRequired,
+  setQuantity: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired
 }
 
 export default CartItem

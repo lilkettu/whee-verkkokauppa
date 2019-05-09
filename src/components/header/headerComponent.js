@@ -1,6 +1,7 @@
-import React from "react"
+import React from 'react'
 import styled from 'styled-components'
-import {Link} from "react-router-dom"
+import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 import ShoppingCart from '../../svgsrc/shopping-cart.svg'
 
 const HeaderComponent = ({cart}) => {
@@ -80,5 +81,9 @@ const StyledLink = styled(Link)`
     color: ${props => props.theme.black}; 
 }
 `
+
+HeaderComponent.propTypes = {
+  cart: PropTypes.object.isRequired
+}
 
 export default HeaderComponent;

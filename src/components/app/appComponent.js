@@ -1,5 +1,5 @@
-import React from "react"
-import {Route} from "react-router-dom"
+import React from 'react'
+import {Route} from 'react-router-dom'
 import styled, {createGlobalStyle, ThemeProvider} from 'styled-components'
 import theme from '../../theme'
 import Header from '../header/headerContainer'

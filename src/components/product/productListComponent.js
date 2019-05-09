@@ -1,18 +1,17 @@
-import React from "react"
-import PropTypes from "prop-types"
-import Product from "./productComponent"
+import React from 'react'
+import PropTypes from 'prop-types'
+import Product from './productComponent'
 import styled from 'styled-components'
 
-const ProductList = ({ products, addItem }) => {
-    return (
-        <List>
-            {products.map(product => (
-                <Item key={product.id}>
-                    <Product {...product} addItem={addItem} />
-                </Item>
-            ))}
-        </List>
-    )
+const ProductList = ({products, addItem}) => {
+
+    const listOfProducts = products.map(product => (
+        <Item key={product.id}>
+            <Product {...product} addItem={addItem} />
+        </Item>
+    ))
+
+    return <List>{listOfProducts}</List>
 }
 
 const List = styled.ul`

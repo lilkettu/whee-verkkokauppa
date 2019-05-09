@@ -1,21 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import {Link} from "react-router-dom"
+import {Link} from 'react-router-dom'
 import CartItem from './cartItemComponent'
 import {products} from '../../products.js'
 
 const Cart = ({cart, setQuantity, removeItem, checkout}) => {
-    const productList = products.products;
+    const listOfProducts = products.products
+
+    const itemsInCart = listOfProducts.map(product =>
+        <li key={product.id}>
+            <CartItem product={product} quantity={cart[product.id]} setQuantity={setQuantity} removeItem={removeItem} />
+        </li>
+    )
 
     const itemCount = Object.values(cart).reduce((total, quantity) => total + quantity, 0)
 
-    const totalPrice = (Object.values(cart)
-        .map((item, i) => item * productList[i].price)
-        .reduce((total, subtotal) => total + subtotal, 0))
+    const totalPrice = Object.values(cart)
+        .map((item, i) => item * listOfProducts[i].price)
+        .reduce((total, subtotal) => total + subtotal, 0)
 
     return (
         <CartContainer>
+
             <ShoppingCart>
                 <Border>
                     <Title>
@@ -25,15 +32,10 @@ const Cart = ({cart, setQuantity, removeItem, checkout}) => {
                             <h2>{itemCount} items</h2>
                         }
                     </Title>
-                    <List>
-                        {productList.map((product =>
-                            <li key={product.id}>
-                                <CartItem product={product} quantity={cart[product.id]} setQuantity={setQuantity} removeItem={removeItem} />
-                            </li>
-                        ))}
-                    </List>
+                    <List>{itemsInCart}</List>
                 </Border>
             </ShoppingCart>
+
             <Checkout>
                 <Border>
                     <Total>Total</Total>
@@ -53,6 +55,7 @@ const Cart = ({cart, setQuantity, removeItem, checkout}) => {
                     </Link>
                 </Border>
             </Checkout>
+
         </CartContainer>
     )
 }
@@ -130,7 +133,8 @@ const CheckoutButton = styled.button`
 `
 
 Cart.propTypes = {
-    addItem: PropTypes.func.isRequired,
+    cart: PropTypes.object.isRequired,
+    setQuantity: PropTypes.func.isRequired,
     removeItem: PropTypes.func.isRequired,
     checkout: PropTypes.func.isRequired
 }
