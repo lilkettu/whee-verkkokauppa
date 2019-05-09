@@ -7,9 +7,6 @@ function CartItem({product, quantity, setQuantity, removeItem}) {
 
   const [removed, setRemoved] = useState(false)
 
-  const qtyList = Array.from({length: 10}, (_, i) => i + 1)
-    .map(i => <option key={i} value={i}>{i}</option>)
-
   const handleQuantityChange = event => setQuantity(product.id, parseInt(event.target.value))
 
   const handleRemove = () => {
@@ -36,7 +33,8 @@ function CartItem({product, quantity, setQuantity, removeItem}) {
 
         <Right>
           <Quantity value={quantity} onChange={handleQuantityChange}>
-            {qtyList}
+            {Array.from({length: 10}, (_, i) => i + 1)
+              .map(i => <option key={i} value={i}>{i}</option>)}
           </Quantity>
 
           <ItemInfo>{product.price} €</ItemInfo>
@@ -50,6 +48,13 @@ function CartItem({product, quantity, setQuantity, removeItem}) {
   )
 }
 
+CartItem.propTypes = {
+  product: PropTypes.object.isRequired,
+  quantity: PropTypes.number.isRequired,
+  setQuantity: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired
+}
+
 const ItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -57,33 +62,39 @@ const ItemContainer = styled.div`
   padding-top: 1.5em;
   padding-bottom: 0.5em;
 `
+
 const Img = styled.img`
   height: 5rem;
   width: auto;
   border: 1px solid #EBEBEB;
   padding: 0.5em 0.2em;
 `
+
 const Center = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: auto;
   padding-left: 1em;
 `
+
 const Right = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
 `
+
 const Quantity = styled.select`
   width: 4em;
   height: 2em;
 `
+
 const ItemInfo = styled.p`
   display: flex;
   justify-content: flex-end;
   white-space: nowrap;
   margin-bottom: 0;
 `
+
 const RemoveButton = styled.button`
   background: white;
   text-transform: uppercase;
@@ -96,6 +107,7 @@ const RemoveButton = styled.button`
       color: white;
   }
 `
+
 const Removed = styled.div`
   display: flex;
   align-items: center;
@@ -103,12 +115,5 @@ const Removed = styled.div`
   padding-top: 1.5em;
   padding-bottom: 0.5em;
 `
-
-CartItem.propTypes = {
-  product: PropTypes.object.isRequired,
-  quantity: PropTypes.number.isRequired,
-  setQuantity: PropTypes.func.isRequired,
-  removeItem: PropTypes.func.isRequired
-}
 
 export default CartItem

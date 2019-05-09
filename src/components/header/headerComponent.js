@@ -27,6 +27,10 @@ const HeaderComponent = ({cart}) => {
   )
 }
 
+HeaderComponent.propTypes = {
+  cart: PropTypes.object.isRequired
+}
+
 const Header = styled.div`
   background-color: ${props => props.theme.lightGrey};
   background-image: linear-gradient(${props => props.theme.darkGrey}, ${props => props.theme.lightGrey});
@@ -81,9 +85,5 @@ const StyledLink = styled(Link)`
     color: ${props => props.theme.black}; 
 }
 `
-
-HeaderComponent.propTypes = {
-  cart: PropTypes.object.isRequired
-}
 
 export default HeaderComponent;

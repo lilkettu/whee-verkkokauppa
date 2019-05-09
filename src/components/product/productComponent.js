@@ -3,24 +3,33 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Product = ({id, name, description, price, image, addItem}) => {
-    const imagePath = `/images/${image}`
-    
-    return (
-        <ProductContainer>
-            <Img src={imagePath} />
-            <Center>
-                <Name>{name}</Name>
-                <p>{description}</p>
-            </Center>
-            <Right>
-                <Price>{price} €</Price>
-                <AddButton
-                    onClick={() => addItem(id)}>
-                    Add to cart
+	const imagePath = `/images/${image}`
+
+	return (
+		<ProductContainer>
+			<Img src={imagePath} />
+			<Center>
+				<Name>{name}</Name>
+				<p>{description}</p>
+			</Center>
+			<Right>
+				<Price>{price} €</Price>
+				<AddButton
+					onClick={() => addItem(id)}>
+					Add to cart
                 </AddButton>
-            </Right>
-        </ProductContainer>
-    )
+			</Right>
+		</ProductContainer>
+	)
+}
+
+Product.propTypes = {
+	id: PropTypes.number.isRequired,
+	name: PropTypes.string.isRequired,
+	description: PropTypes.string.isRequired,
+	price: PropTypes.number.isRequired,
+	image: PropTypes.string,
+	addItem: PropTypes.func.isRequired
 }
 
 const ProductContainer = styled.article`
@@ -48,8 +57,9 @@ const Name = styled.p`
 `
 
 const Right = styled.div`
-align-items: flex-start;
+    align-items: flex-start;
 `
+
 const Img = styled.img`
     height: 7rem;
     width: auto;
@@ -76,14 +86,5 @@ const AddButton = styled.button`
         color: ${props => props.theme.white};
     }
 `
-
-Product.propTypes = {
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    image: PropTypes.string,
-    addItem: PropTypes.func.isRequired
-}
 
 export default Product
