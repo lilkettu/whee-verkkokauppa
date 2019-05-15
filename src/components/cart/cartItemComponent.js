@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import Button from '../common/Button'
 
 function CartItem({product, quantity, setQuantity, removeItem}) {
   const imagePath = `/images/${product.image}`
@@ -95,17 +96,9 @@ const ItemInfo = styled.p`
   margin-bottom: 0;
 `
 
-const RemoveButton = styled.button`
-  background: white;
-  text-transform: uppercase;
-  border: 1px solid;
+const RemoveButton = styled(Button)`
   padding: 0.3em 0.7em;
-  font-family: 'Playfair Display', serif;
-  
-  :active {
-      background: black;
-      color: white;
-  }
+  font-size: 0.9em;
 `
 
 const Removed = styled.div`

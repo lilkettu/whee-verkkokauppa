@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import CartItem from './cartItemComponent'
 import {products} from '../../products.js'
+import Button from '../common/Button'
 
 const Cart = ({cart, checkout, ...props}) => {
 	const listOfProducts = products.products
@@ -26,13 +27,13 @@ const Cart = ({cart, checkout, ...props}) => {
 							<h2>{itemCount} items</h2>
 						}
 					</Title>
-					<List>
+					<ul>
 						{listOfProducts.map(product =>
 							<li key={product.id}>
 								<CartItem product={product} quantity={cart[product.id]} {...props} />
 							</li>
 						)}
-					</List>
+					</ul>
 				</Border>
 			</ShoppingCart>
 
@@ -110,11 +111,6 @@ const Title = styled.div`
     justify-content: space-between;
 `
 
-const List = styled.ul`
-    list-style-type: none;
-    padding: 0;
-`
-
 const Total = styled.h2`
     border-bottom: 0.06em solid ${props => props.theme.lightGrey};
 `
@@ -124,19 +120,10 @@ const Amount = styled.div`
     justify-content: space-between;
 `
 
-const CheckoutButton = styled.button`
-    background: ${props => props.theme.white};
-    text-transform: uppercase;
-    font-size: 1.15em;
+const CheckoutButton = styled(Button)`
     padding: 0.5em 1.25em;
     margin-top: 2em;
     width: 100%;
-    border: 1px solid;
-    font-family: 'Playfair Display', serif;
-
-:active {
-    background: ${props => props.theme.black};
-    color: ${props => props.theme.white};
 }
 `
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import Button from '../common/Button'
 
 const Product = ({id, name, description, price, image, addItem}) => {
 	const imagePath = `/images/${image}`
@@ -72,19 +73,9 @@ const Price = styled.p`
     margin-top: 0;
 `
 
-const AddButton = styled.button`
-    background: ${props => props.theme.white};
-    text-transform: uppercase;
-    font-size: 1.15em;
-    padding: 0.4em 1.2em;
-    border: 1px solid;
-    font-family: 'Playfair Display', serif;
-    margin-bottom: 0.4em;
-
-    :active {
-        background: ${props => props.theme.black};
-        color: ${props => props.theme.white};
-    }
+const AddButton = styled(Button)`
+	padding: 0.4em 1.2em;
+	margin-bottom: 0.4em;
 `
 
 export default Product

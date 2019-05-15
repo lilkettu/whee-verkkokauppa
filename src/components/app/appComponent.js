@@ -14,6 +14,11 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     margin: 0;
   }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
 `
 
 const App = () => {
