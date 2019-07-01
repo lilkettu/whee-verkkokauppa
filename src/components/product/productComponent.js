@@ -11,7 +11,7 @@ const Product = ({id, name, description, price, image, addItem}) => {
 			<Img src={imagePath} />
 			<Center>
 				<Name>{name}</Name>
-				<p>{description}</p>
+				<Description>{description}</Description>
 			</Center>
 			<Right>
 				<Price>{price} €</Price>
@@ -36,7 +36,9 @@ Product.propTypes = {
 const ProductContainer = styled.article`
     font-size: 1rem;
     display: flex;
-    align-items: flex-end;
+	align-items: flex-end;
+	flex-flow: row wrap;
+	justify-content: flex-end;
     padding-bottom: 2.5em;
     padding-top: 1.8em;
 `
@@ -57,8 +59,15 @@ const Name = styled.p`
     margin: 0.5em 0;
 `
 
+const Description = styled.p`
+	min-width: 7em;
+`
+
 const Right = styled.div`
-    align-items: flex-start;
+	display: flex;
+	align-items: flex-end;
+	flex-flow: column wrap;
+	justify-content: flex-end;
 `
 
 const Img = styled.img`

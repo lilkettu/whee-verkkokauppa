@@ -58,6 +58,7 @@ CartItem.propTypes = {
 
 const ItemContainer = styled.div`
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
   align-items: stretch;
   padding-top: 1.5em;

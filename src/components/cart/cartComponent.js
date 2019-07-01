@@ -24,8 +24,7 @@ const Cart = ({cart, checkout, ...props}) => {
 						<h1>Shopping cart</h1>
 						{itemCount === 1 ?
 							<h2>1 item</h2> :
-							<h2>{itemCount} items</h2>
-						}
+							<h2>{itemCount} items</h2>}
 					</Title>
 					<ul>
 						{listOfProducts.map(product =>
@@ -70,20 +69,15 @@ Cart.propTypes = {
 
 const CartContainer = styled.div`
     display: flex;
-    justify-content: flex-end;
     padding-top: 1rem;  
-    flex-wrap: wrap;
+	flex-wrap: wrap;
+	justify-content: space-between;
 `
 
 const ShoppingCart = styled.div`
-    min-width: 30em;
+	box-sizing: border-box;
     background-color: ${props => props.theme.white};
-    box-sizing: border-box;
-    flex: 1;
-
-    @media (max-width: 600px) {
-        min-width: 25em;
-    }
+	flex: 1;
 `
 
 const Checkout = styled.div`
@@ -91,7 +85,7 @@ const Checkout = styled.div`
     background-color: ${props => props.theme.white};
     box-sizing: border-box;
 
-    @media (max-width: 960px) {
+    @media (max-width: 800px) {
         flex: 1;
     }
 `
@@ -106,9 +100,10 @@ const Border = styled.div`
 
 const Title = styled.div`
     border-bottom: 0.06em solid ${props => props.theme.lightGrey};
-    display: flex;
+	display: flex;
+	flex-flow: row wrap;
     align-items: baseline;
-    justify-content: space-between;
+	justify-content: space-between;
 `
 
 const Total = styled.h2`
